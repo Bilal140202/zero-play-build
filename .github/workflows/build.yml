@@ -23,7 +23,7 @@ jobs:
         run: pnpm install
 
       - name: Install EAS CLI
-        run: pnpm add -g eas-cli
+        run: npm install -g eas-cli
 
       - name: Expo Login
         run: eas login --token ${{ secrets.EXPO_TOKEN }}
