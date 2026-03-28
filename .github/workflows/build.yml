@@ -16,12 +16,18 @@ jobs:
         with:
           node-version: 18
 
-      - run: npm install
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-      - run: npm install -g eas-cli
+      - name: Install dependencies
+        run: pnpm install
 
-      - run: eas login --token ${{ secrets.EXPO_TOKEN }}
+      - name: Install EAS CLI
+        run: pnpm add -g eas-cli
 
-      - run: eas build:configure || true
+      - name: Expo Login
+        run: eas login --token ${{ secrets.EXPO_TOKEN }}
 
-      - run: eas build --platform android --profile production --non-interactive
+      - name: Build Android
+        run: eas build --platform android --profile production --non-interactive
+        working-directory: artifacts/mobile
